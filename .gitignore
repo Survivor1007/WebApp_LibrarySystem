@@ -1,0 +1,69 @@
+# ========================
+# Python / Django
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+
+# Virtual environment
+venv/
+env/
+*.venv/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# Local settings
+local_settings.py
+
+# ========================
+# Node / React
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Coverage
+coverage/
+*.lcov
+
+# ========================
+# Environment & Secrets
+# ========================
+.env
+*.env
+
+# ========================
+# Editors & OS
+# ========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ========================
+# Testing / Coverage
+# ========================
+htmlcov/
+.coverage
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+*.pytest_cache/
