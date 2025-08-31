@@ -36,7 +36,7 @@ class BookViewSet(viewsets.ModelViewSet):
             )
 
             if not created:
-                  book.available_copies += 1
+                  book.available_copies += copies
                   book.save()
             
             return Response(
@@ -75,7 +75,7 @@ class BorrowViewSet(viewsets.ModelViewSet):
             try:
                   borrow = self.get_object()
             except Borrow.DoesNotExist:
-                  return Response({"error" : "Borrow Record not found"}, status = status.HTT_404_NOT_FOUND)
+                  return Response({"error" : "Borrow Record not found"}, status = status.HTTP_404_NOT_FOUND)
             
             book = borrow.book
 
