@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Book, Borrow
 from .serializers import BookSerializers, BorrowSerializers, UserRegisterSerializer
@@ -92,5 +93,21 @@ class RegisterView(generics.CreateAPIView):
       serializer_class = UserRegisterSerializer
       permission_classes = [AllowAny]
 
+      def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()  # Create the user
 
+        # generate tokens
+        refresh = RefreshToken.for_user(user)
+        access = refresh.access_token
+
+        return Response(
+            {
+                "user": serializer.data,
+                "refresh": str(refresh),
+                "access": str(access),
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
